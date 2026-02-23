@@ -88,3 +88,25 @@ customer-churn-analysis/
 - ~1,400 customers/month at risk  
 - Catch 79% → ~1,106 retained (at cost of contacting ~2,100–2,300 customers)  
 - Assume $15–25 retention offer success rate 12–18% → realistic monthly saved revenue $2k–$8k depending on ARPU
+
+
+# 1. Clone repository
+git clone https://github.com/yourusername/customer-churn-analysis.git
+cd customer-churn-analysis
+
+# 2. Recommended: use uv (fast & modern) or pip
+# Option A – uv (2025 favourite)
+uv venv
+source .venv/bin/activate
+uv pip install -r requirements.txt
+
+# Option B – classic
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+
+# 3. Run EDA notebook
+jupyter lab notebooks/01-eda.ipynb
+
+# 4. Or run full training pipeline
+python src/models/train_model.py --model catboost --save
