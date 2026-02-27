@@ -13,7 +13,7 @@ This project focuses on predictive performance, imbalance handling, business cos
 
 ## 1. Business Context
 
-Customer churn is one of the most expensive revenue leaks in subscription businesses. Acquiring a new customer often costs significantly more than retaining an existing one.
+Customer churn is one of the most expensive revenue leaks in  businesses. Acquiring a new customer often costs significantly more than retaining an existing one.
 
 **Executive Problem**
 
