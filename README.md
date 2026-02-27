@@ -339,7 +339,7 @@ CatBoost selected as final model due to:
 - Native categorical support  
 - Better performance in high-recall regime  
 
-Performance advantage is not cosmetic. It produces measurable churn capture improvement.
+Performance advantage is not cosmetic. It produces churn capture improvement.
 
 ---
 
