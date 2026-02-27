@@ -169,7 +169,7 @@ Measures overall ranking ability across thresholds.
 
 All models exceed 0.85, indicating strong separability between churn and non-churn classes.
 
-However, ROC-AUC can overstate performance in imbalanced datasets. Therefore, it was not the primary selection criterion.
+However, ROC-AUC can overstate performance in imbalanced datasets. Therefore, it was not  primary selection criterion.
 
 ---
 
