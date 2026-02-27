@@ -28,7 +28,7 @@ Develop a predictive system that:
 - Enables targeted retention campaigns  
 - Produces interpretable churn drivers  
 
-The goal is business impact, not just model accuracy.
+The goal is impact, not just model accuracy.
 
 ---
 
