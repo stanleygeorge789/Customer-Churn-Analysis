@@ -195,7 +195,7 @@ Interpretation:
 If the company contacts 30% of customers, how many churners can it capture?
 
 - CatBoost captures ~79%  
-- Logistic Regression captures ~68%  
+- Logistic Regression ~68%  
 
 Difference: 11 percentage points.
 
