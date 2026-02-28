@@ -88,11 +88,6 @@ Default probability threshold of 0.5 is not financially optimal.
 ## 4. Feature Engineering
 
 Enhancements applied:
-
-- Tenure buckets  
-- Revenue-to-tenure ratio  
-- Service count aggregation  
-- Binary contract encoding  
 - Interaction term: tenure × monthly charges  
 - Log transformation of skewed monetary variables  
 
