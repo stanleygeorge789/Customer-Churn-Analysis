@@ -118,9 +118,7 @@ All preprocessing wrapped inside sklearn pipelines to prevent leakage.
 
 Interpretation:
 
-If the company contacts 30% of customers, how many churners can it capture?
 
-PR-AUC used for model comparison due to class imbalance.
 
 ---
 
