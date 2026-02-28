@@ -2,45 +2,51 @@
 
 ![Python](https://img.shields.io/badge/Python-3.9+-blue?style=flat-square&logo=python&logoColor=white)
 ![scikit-learn](https://img.shields.io/badge/scikit--learn-1.4+-orange?style=flat-square)
-![EDA](https://img.shields.io/badge/EDA-Exploratory%20Data%20Analysis-important?style=flat-square)
-![Imbalanced Learning](https://img.shields.io/badge/Imbalanced-Learning-ff69b4?style=flat-square)
+![EDA](https://img.shields.io/badge/📊-Exploratory%20Data%20Analysis-important?style=flat-square)
+![Imbalanced Learning](https://img.shields.io/badge/🔄-Imbalanced%20Learning-ff69b4?style=flat-square)
 
+Production-oriented machine learning project to predict customer churn in telecom and subscription businesses such as SaaS and banking.
 
-
-The focus is business-constrained recall, campaign economics, and deployable architecture — not just model accuracy.
+The focus is not leaderboard metrics. The focus is business-constrained recall, campaign economics, and deployable architecture.
 
 ---
 
 ## 1. Problem Framing
 
-Churn is predictable, but poorly operationalized in many organizations.
+Churn is predictable. Most companies simply do not operationalize it correctly.
 
-Acquiring new customers costs significantly more than retaining existing ones. Retention campaigns are budget constrained and must be precisely targeted.
+Acquiring new customers costs significantly more than retaining existing ones. Yet retention campaigns are often poorly targeted and budget constrained.
 
 **Executive Question**
 
-> Who is most likely to leave next, and how many can we realistically save within budget?
+> "We are losing customers every month. Who is most likely to leave next, and how many can we realistically save within budget?"
 
-### Project Objective
+### Objective
 
 Build a churn prediction system that:
 
-- Identifies high-risk customers within the next 30 days  
+- Identifies high-risk customers in the next 30 days  
 - Maximizes recall under campaign capacity constraints  
 - Quantifies business impact  
-- Produces interpretable churn drivers  
+- Produces interpretable drivers  
+
+This project optimizes for revenue impact, not cosmetic accuracy gains.
 
 ---
 
 ## 2. Dataset
 
-Primary benchmark dataset: **Telco Customer Churn**
+**Primary dataset:** Telco Customer Churn  
 
 - Rows: 7,043  
 - Churn rate: ~26.5%  
-- File: `data/Telco-Customer-Churn.csv`
 
-### Feature Categories
+Repository file:
+```
+data/Telco-Customer-Churn.csv
+```
+
+### Feature Groups
 
 **Demographics**
 - Gender  
@@ -54,7 +60,7 @@ Primary benchmark dataset: **Telco Customer Churn**
 - OnlineSecurity  
 - TechSupport  
 
-**Account Information**
+**Account Attributes**
 - Tenure  
 - Contract  
 - MonthlyCharges  
@@ -63,35 +69,40 @@ Primary benchmark dataset: **Telco Customer Churn**
 **Target**
 - Churn (Yes / No)
 
-Class imbalance: ~27% churn.
+Class imbalance: ~27%.
 
 ---
 
 ## 3. Key EDA Insights
 
 - Month-to-month contracts churn 3–4× more than long-term contracts  
-- Low tenure + high monthly charges = highest-risk segment  
-- Lack of OnlineSecurity and TechSupport increases churn probability  
+- Low tenure + high monthly charges is highest-risk segment  
+- Lack of OnlineSecurity and TechSupport increases churn  
 - Electronic check payment correlates with churn  
-- Senior citizens show slightly elevated churn risk  
+- Senior citizens show slightly elevated risk  
 
-**Implications**
+### Implications
 
 - Stratified cross-validation required  
-- PR-AUC prioritized over ROC-AUC  
+- Precision-Recall curves preferred over ROC  
 - Threshold tuning mandatory  
 
-Default probability threshold of 0.5 is not financially optimal.
+Default threshold = 0.5 is financially naive.
 
 ---
 
 ## 4. Feature Engineering
 
 Enhancements applied:
-- Interaction term: tenure × monthly charges  
+
+- Tenure buckets  
+- Revenue-to-tenure ratio  
+- Service count aggregation  
+- Binary encoding for contract  
+- Tenure × monthly charges interaction  
 - Log transformation of skewed monetary variables  
 
-Final feature space: ~20 engineered features.
+Final feature space: ~20 engineered variables.
 
 All preprocessing wrapped inside sklearn pipelines to prevent leakage.
 
@@ -103,9 +114,9 @@ All preprocessing wrapped inside sklearn pipelines to prevent leakage.
 
 - 5-fold stratified cross-validation  
 - 20% hold-out test set  
-- Random seed: 2025  
+- Fixed random seed (2025)  
 - Optuna hyperparameter tuning (60–120 trials per model)  
-- Full pipeline integration  
+- Full preprocessing inside pipeline  
 
 ### Primary Business Metric
 
@@ -113,11 +124,13 @@ All preprocessing wrapped inside sklearn pipelines to prevent leakage.
 
 Interpretation:
 
+If the company contacts 30% of customers, how many churners can it capture?
 
+PR-AUC prioritized due to class imbalance.
 
 ---
 
-## 6. Model Performance
+## 6. Model Comparison
 
 | Model                | ROC-AUC | PR-AUC | Recall @ ~30% Precision | F1 (Churn) |
 |----------------------|---------|--------|--------------------------|------------|
@@ -130,18 +143,18 @@ Interpretation:
 
 ### What Matters
 
-Difference between ROC 0.90 and 0.89 is negligible.
+Difference between ROC 0.90 and 0.89 is noise.
 
-Difference between 79% and 68% recall at fixed campaign budget is financially meaningful.
+Difference between 79% and 68% recall under fixed campaign budget is material.
 
 On 1,500 churners:
 
 - CatBoost captures ~1,185  
 - Logistic Regression captures ~1,020  
 
-165 additional customers retained per cycle.
+That is 165 additional customers per cycle.
 
-Model choice affects revenue.
+Model choice changes revenue.
 
 ---
 
@@ -152,12 +165,12 @@ Model choice affects revenue.
 Reasons:
 
 - Highest PR-AUC  
-- Strong recall in high-recall region  
-- Stable cross-validation variance  
-- Native categorical feature handling  
-- Minimal preprocessing requirements  
+- Strongest recall in high-recall region  
+- Stable cross-validation  
+- Native categorical handling  
+- Minimal preprocessing  
 
-Churn patterns are nonlinear. Boosting models outperform linear baselines consistently.
+Churn behavior is nonlinear. Boosting models outperform linear baselines.
 
 ---
 
@@ -167,25 +180,26 @@ Assumptions:
 
 - 7,000 customers  
 - 1,500 churn per cycle  
-- Recall: 79%  
-- Customers contacted: ~2,200  
-- Retention offer cost: $20  
-- Campaign success rate: 15%  
-- ARPU: $60  
+- Recall = 79%  
+- 2,200 customers contacted  
+- Retention cost = $20  
+- Offer success rate = 15%  
+- ARPU = $60  
 
 Estimated retained customers: ~330  
-Estimated monthly revenue saved: ~$19,800  
+Monthly revenue saved: ~$19,800  
 Campaign cost: ~$44,000  
 
 Conclusion:
 
-Threshold optimization and lifetime value modeling are critical for profitability.
+Threshold tuning and lifetime value modeling determine profitability.  
+Raw recall alone is insufficient.
 
 ---
 
 ## 9. Explainability
 
-SHAP analysis applied to CatBoost predictions.
+SHAP applied to CatBoost.
 
 Top churn drivers:
 
@@ -195,35 +209,30 @@ Top churn drivers:
 - No online security  
 - Electronic check payment  
 
-Actionable strategies:
-
-- Early onboarding incentives  
-- Contract migration offers  
-- Bundled service promotions  
-- Payment method optimization  
+These insights support targeted interventions.
 
 ---
 
 ## 10. Production Architecture
 
-Deployment flow:
+Typical deployment flow:
 
 1. Nightly batch scoring  
 2. Store churn probability in CRM  
 3. Risk segmentation  
-4. Automated retention campaign triggering  
+4. Automated campaign triggering  
 5. Quarterly retraining  
 6. Drift monitoring  
 
-Optional tools:
+Optional stack:
 
-- FastAPI for model serving  
-- MLflow for experiment tracking  
-- Docker containerization  
-- Airflow scheduled retraining  
-- Evidently for data drift detection  
+- FastAPI  
+- MLflow  
+- Docker  
+- Airflow  
+- Evidently  
 
-Designed for operational deployment, not notebook-only experimentation.
+Designed for operational use, not just experimentation.
 
 ---
 
@@ -241,10 +250,8 @@ Customer-Churn-Analysis/
 └── README.md
 ```
 
-Production logic resides in `src/`.  
+All production logic resides in `src/`.  
 Notebooks are exploratory only.
-
-Structure emphasizes reproducibility, separation of concerns, and deployment readiness.
 
 ---
 
@@ -264,6 +271,13 @@ python src/models/train_model.py --model catboost --save
 
 ---
 
-## 13. Future Improvements
+## 13. Future Extensions
 
+- Survival analysis for time-to-churn  
+- Cost-sensitive learning  
+- Uplift modeling  
+- Real-time scoring API  
+- Customer lifetime value integration  
+- Continuous performance monitoring  
 
+---
