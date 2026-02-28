@@ -5,7 +5,7 @@
 ![EDA](https://img.shields.io/badge/EDA-Exploratory%20Data%20Analysis-important?style=flat-square)
 ![Imbalanced Learning](https://img.shields.io/badge/Imbalanced-Learning-ff69b4?style=flat-square)
 
-Production-oriented machine learning project to predict customer churn in telecom and subscription-based businesses such as SaaS and banking.
+
 
 The focus is business-constrained recall, campaign economics, and deployable architecture — not just model accuracy.
 
