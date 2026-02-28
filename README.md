@@ -266,9 +266,4 @@ python src/models/train_model.py --model catboost --save
 
 ## 13. Future Improvements
 
-- Survival analysis for time-to-churn  
-- Cost-sensitive learning  
-- Uplift modeling  
-- Real-time scoring pipeline  
-- Customer lifetime value integration  
-- Continuous drift monitoring  
+
