@@ -1,47 +1,47 @@
-# Customer Churn Prediction & Analysis
+# Customer Churn Prediction and Revenue Impact Modeling
 
 ![Python](https://img.shields.io/badge/Python-3.9+-blue?style=flat-square&logo=python&logoColor=white)
 ![scikit-learn](https://img.shields.io/badge/scikit--learn-1.4+-orange?style=flat-square)
-![EDA](https://img.shields.io/badge/📊-Exploratory%20Data%20Analysis-important?style=flat-square)
-![Imbalanced Learning](https://img.shields.io/badge/🔄-Imbalanced%20Learning-ff69b4?style=flat-square)
+![EDA](https://img.shields.io/badge/EDA-Exploratory%20Data%20Analysis-important?style=flat-square)
+![Imbalanced Learning](https://img.shields.io/badge/Imbalanced-Learning-ff69b4?style=flat-square)
 
-Production-oriented machine learning project to predict customer churn in telecom and subscription businesses such as SaaS and banking.
+A business-aligned machine learning project designed to predict customer churn in telecom, SaaS, and subscription-based environments.
 
-The focus is not leaderboard metrics. The focus is business-constrained recall, campaign economics, and deployable architecture.
-
----
-
-## 1. Problem Framing
-
-Churn is predictable. Most companies simply do not operationalize it correctly.
-
-Acquiring new customers costs significantly more than retaining existing ones. Yet retention campaigns are often poorly targeted and budget constrained.
-
-**Executive Question**
-
-> "We are losing customers every month. Who is most likely to leave next, and how many can we realistically save within budget?"
-
-### Objective
-
-Build a churn prediction system that:
-
-- Identifies high-risk customers in the next 30 days  
-- Maximizes recall under campaign capacity constraints  
-- Quantifies business impact  
-- Produces interpretable drivers  
-
-This project optimizes for revenue impact, not cosmetic accuracy gains.
+This is not a metric-chasing exercise. The system is optimized for constrained recall, campaign economics, and deployable architecture.
 
 ---
 
-## 2. Dataset
+## 1. Business Context
 
-**Primary dataset:** Telco Customer Churn  
+Churn is rarely random. It is usually ignored until revenue declines become visible.
 
-- Rows: 7,043  
-- Churn rate: ~26.5%  
+Retention is cheaper than acquisition, yet most organizations deploy blanket campaigns due to poor targeting.
 
-Repository file:
+**Executive question**
+
+"Which customers are most likely to churn in the next 30 days, and how many can we realistically retain within our campaign budget?"
+
+### Project Goal
+
+Develop a churn prediction framework that:
+
+- Flags high-risk customers
+- Maximizes recall under fixed outreach capacity
+- Quantifies expected revenue impact
+- Provides interpretable drivers for action
+
+The objective is financial impact, not cosmetic improvement in accuracy.
+
+---
+
+## 2. Dataset Overview
+
+Primary dataset: Telco Customer Churn  
+
+- Total records: 7,043  
+- Churn rate: approximately 26.5%  
+
+File location:
 ```
 data/Telco-Customer-Churn.csv
 ```
