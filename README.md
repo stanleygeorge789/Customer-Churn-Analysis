@@ -46,7 +46,7 @@ File location:
 data/Telco-Customer-Churn.csv
 ```
 
-### Feature Groups
+### Feature Categories
 
 **Demographics**
 - Gender  
@@ -66,71 +66,73 @@ data/Telco-Customer-Churn.csv
 - MonthlyCharges  
 - TotalCharges  
 
-**Target**
+**Target Variable**
 - Churn (Yes / No)
 
-Class imbalance: ~27%.
+Class distribution is moderately imbalanced at roughly 27% churn.
 
 ---
 
-## 3. Key EDA Insights
+## 3. Exploratory Data Analysis Findings
 
-- Month-to-month contracts churn 3–4× more than long-term contracts  
-- Low tenure + high monthly charges is highest-risk segment  
-- Lack of OnlineSecurity and TechSupport increases churn  
-- Electronic check payment correlates with churn  
-- Senior citizens show slightly elevated risk  
+Key patterns observed:
 
-### Implications
+- Month-to-month contracts churn at 3 to 4 times the rate of long-term contracts  
+- Low tenure combined with high monthly charges defines the highest-risk cohort  
+- Absence of OnlineSecurity and TechSupport increases churn probability  
+- Electronic check payment method correlates with churn  
+- Senior citizens exhibit slightly higher churn rates  
 
-- Stratified cross-validation required  
-- Precision-Recall curves preferred over ROC  
-- Threshold tuning mandatory  
+### Modeling Implications
 
-Default threshold = 0.5 is financially naive.
+- Stratified cross-validation is mandatory  
+- Precision-Recall curves are more informative than ROC curves  
+- Threshold tuning is not optional  
+
+A default probability threshold of 0.5 ignores campaign economics and is therefore unrealistic.
 
 ---
 
 ## 4. Feature Engineering
 
-Enhancements applied:
+Enhancements introduced:
 
-- Tenure buckets  
+- Tenure banding  
 - Revenue-to-tenure ratio  
-- Service count aggregation  
-- Binary encoding for contract  
-- Tenure × monthly charges interaction  
-- Log transformation of skewed monetary variables  
+- Aggregated service count  
+- Binary encoding of contract types  
+- Interaction term between tenure and monthly charges  
+- Log transformation for skewed monetary variables  
 
-Final feature space: ~20 engineered variables.
+Final engineered feature set contains approximately 20 variables.
 
-All preprocessing wrapped inside sklearn pipelines to prevent leakage.
+All preprocessing steps are encapsulated inside sklearn pipelines to prevent leakage.
 
 ---
 
-## 5. Modeling Strategy
+## 5. Modeling Framework
 
 ### Validation Design
 
 - 5-fold stratified cross-validation  
-- 20% hold-out test set  
-- Fixed random seed (2025)  
-- Optuna hyperparameter tuning (60–120 trials per model)  
-- Full preprocessing inside pipeline  
+- 20% hold-out test split  
+- Fixed random seed set to 2025  
+- Optuna-based hyperparameter optimization with 60 to 120 trials per model  
+- End-to-end pipeline validation  
 
 ### Primary Business Metric
 
-**Recall at ~30% precision**
+Recall at approximately 30% precision.
 
 Interpretation:
 
-If the company contacts 30% of customers, how many churners can it capture?
+If outreach capacity allows contacting 30% of customers, how many churners are captured?
 
-PR-AUC prioritized due to class imbalance.
+PR-AUC is prioritized due to class imbalance.
 
 ---
 
-## 6. Model Comparison
+## 6. Model Benchmarking
 
 | Model                | ROC-AUC | PR-AUC | Recall @ ~30% Precision | F1 (Churn) |
 |----------------------|---------|--------|--------------------------|------------|
@@ -141,36 +143,34 @@ PR-AUC prioritized due to class imbalance.
 | Random Forest        | 0.87    | 0.63   | 0.72                     | 0.54       |
 | Logistic Regression  | 0.85    | 0.59   | 0.68                     | 0.51       |
 
-### What Matters
+### Interpretation
 
-Difference between ROC 0.90 and 0.89 is noise.
+A marginal ROC difference is rarely actionable.
 
-Difference between 79% and 68% recall under fixed campaign budget is material.
+A 10% improvement in recall under fixed campaign capacity directly changes retained revenue.
 
-On 1,500 churners:
+For 1,500 churners per cycle:
 
-- CatBoost captures ~1,185  
-- Logistic Regression captures ~1,020  
+- CatBoost identifies approximately 1,185  
+- Logistic Regression identifies approximately 1,020  
 
-That is 165 additional customers per cycle.
-
-Model choice changes revenue.
+That is 165 additional high-risk customers identified per cycle. Model choice affects revenue outcomes.
 
 ---
 
 ## 7. Final Model Selection
 
-**Selected Model: CatBoost**
+Selected model: CatBoost
 
-Reasons:
+Rationale:
 
 - Highest PR-AUC  
-- Strongest recall in high-recall region  
-- Stable cross-validation  
-- Native categorical handling  
-- Minimal preprocessing  
+- Strong recall in the high-recall operating region  
+- Stable cross-validation performance  
+- Native handling of categorical variables  
+- Minimal preprocessing overhead  
 
-Churn behavior is nonlinear. Boosting models outperform linear baselines.
+Churn behavior is nonlinear. Gradient boosting methods consistently outperform linear baselines in this context.
 
 ---
 
@@ -179,52 +179,51 @@ Churn behavior is nonlinear. Boosting models outperform linear baselines.
 Assumptions:
 
 - 7,000 customers  
-- 1,500 churn per cycle  
-- Recall = 79%  
+- 1,500 churn events per cycle  
+- Recall of 79%  
 - 2,200 customers contacted  
-- Retention cost = $20  
-- Offer success rate = 15%  
-- ARPU = $60  
+- Retention cost per contact: $20  
+- Offer conversion rate: 15%  
+- Average revenue per user: $60  
 
-Estimated retained customers: ~330  
-Monthly revenue saved: ~$19,800  
-Campaign cost: ~$44,000  
+Estimated retained customers: approximately 330  
+Monthly revenue preserved: approximately $19,800  
+Campaign cost: approximately $44,000  
 
 Conclusion:
 
-Threshold tuning and lifetime value modeling determine profitability.  
-Raw recall alone is insufficient.
+Recall without cost modeling is insufficient. Profitability depends on threshold optimization and lifetime value integration.
 
 ---
 
-## 9. Explainability
+## 9. Explainability Layer
 
-SHAP applied to CatBoost.
+SHAP analysis applied to CatBoost.
 
-Top churn drivers:
+Top drivers of churn:
 
 - Short tenure  
-- Month-to-month contract  
+- Month-to-month contracts  
 - High monthly charges  
-- No online security  
-- Electronic check payment  
+- Absence of online security  
+- Electronic check payments  
 
-These insights support targeted interventions.
+These drivers support targeted, actionable retention strategies rather than generic discounting.
 
 ---
 
-## 10. Production Architecture
+## 10. Deployment Architecture
 
-Typical deployment flow:
+Production-oriented flow:
 
 1. Nightly batch scoring  
 2. Store churn probability in CRM  
-3. Risk segmentation  
+3. Risk-based segmentation  
 4. Automated campaign triggering  
-5. Quarterly retraining  
-6. Drift monitoring  
+5. Scheduled retraining each quarter  
+6. Data and prediction drift monitoring  
 
-Optional stack:
+Optional tooling stack:
 
 - FastAPI  
 - MLflow  
@@ -232,11 +231,11 @@ Optional stack:
 - Airflow  
 - Evidently  
 
-Designed for operational use, not just experimentation.
+The architecture is designed for operational deployment, not notebook experimentation.
 
 ---
 
-## 11. Project Structure
+## 11. Repository Structure
 
 ```
 Customer-Churn-Analysis/
