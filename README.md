@@ -249,12 +249,12 @@ Customer-Churn-Analysis/
 └── README.md
 ```
 
-All production logic resides in `src/`.  
-Notebooks are exploratory only.
+All production logic is implemented in `src/`.  
+Notebooks are reserved for exploratory analysis.
 
 ---
 
-## 12. Quick Start
+## 12. Setup Instructions
 
 ```bash
 git clone https://github.com/stageor/Customer-Churn-Analysis.git
@@ -266,8 +266,6 @@ source .venv/bin/activate
 pip install -r requirements.txt
 
 python src/models/train_model.py --model catboost --save
-```
-
 ---
 
 ## 13. Future Extensions
