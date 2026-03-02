@@ -5,43 +5,43 @@
 ![EDA](https://img.shields.io/badge/EDA-Exploratory%20Data%20Analysis-important?style=flat-square)
 ![Imbalanced Learning](https://img.shields.io/badge/Imbalanced-Learning-ff69b4?style=flat-square)
 
-A business-aligned machine learning project built to predict customer churn in telecom, SaaS, and subscription-based businesses.
+A business-focused machine learning project built to predict customer churn in telecom, SaaS, and subscription-driven businesses.
 
-This is not a leaderboard exercise. The system is optimized for constrained recall, campaign economics, and deployable architecture.
+This project is not built to maximize cosmetic metrics. It is optimized for constrained recall, campaign economics, and deployable system design.
 
 ---
 
 ## 1. Business Context
 
-Churn is typically reactive. It becomes visible only after revenue erosion begins.
+Churn is typically visible only after revenue erosion becomes measurable. By then, recovery is expensive.
 
-Retention is cheaper than acquisition, yet most firms rely on untargeted outreach because risk scoring is weak or absent.
+Retention is structurally cheaper than acquisition. Yet many organizations rely on untargeted retention campaigns due to weak predictive targeting.
 
 **Executive Question**
 
-"Which customers are most likely to churn in the next 30 days, and how many can we retain within our campaign capacity?"
+> Which customers are most likely to churn in the next 30 days, and how many can realistically be retained within a fixed campaign budget?
 
-### Project Goal
+### Project Objective
 
-Design a churn prediction framework that:
+Build a churn prediction framework that:
 
-- Flags high-risk customers  
-- Maximizes recall under fixed outreach constraints  
-- Quantifies expected revenue impact  
-- Explains actionable churn drivers  
+- Identifies high-risk customers  
+- Maximizes recall under outreach capacity constraints  
+- Quantifies expected revenue preservation  
+- Provides interpretable drivers for action  
 
-The objective is measurable financial impact, not cosmetic gains in accuracy.
+The primary goal is financial impact, not accuracy optimization.
 
 ---
 
 ## 2. Dataset Overview
 
-**Primary dataset:** Telco Customer Churn  
+**Primary Dataset:** Telco Customer Churn  
 
 - Total records: 7,043  
-- Churn rate: approximately 26.5%  
+- Churn rate: ~26.5%  
 
-**File path**
+**File Path**
 ```
 data/Telco-Customer-Churn.csv
 ```
