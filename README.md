@@ -5,43 +5,43 @@
 ![EDA](https://img.shields.io/badge/EDA-Exploratory%20Data%20Analysis-important?style=flat-square)
 ![Imbalanced Learning](https://img.shields.io/badge/Imbalanced-Learning-ff69b4?style=flat-square)
 
-A business-aligned machine learning project designed to predict customer churn in telecom, SaaS, and subscription-based environments.
+A business-aligned machine learning project built to predict customer churn in telecom, SaaS, and subscription-based businesses.
 
-This is not a metric-chasing exercise. The system is optimized for constrained recall, campaign economics, and deployable architecture.
+This is not a leaderboard exercise. The system is optimized for constrained recall, campaign economics, and deployable architecture.
 
 ---
 
 ## 1. Business Context
 
-Churn is rarely random. It is usually ignored until revenue declines become visible.
+Churn is typically reactive. It becomes visible only after revenue erosion begins.
 
-Retention is cheaper than acquisition, yet most organizations deploy blanket campaigns due to poor targeting.
+Retention is cheaper than acquisition, yet most firms rely on untargeted outreach because risk scoring is weak or absent.
 
-**Executive question**
+**Executive Question**
 
-"Which customers are most likely to churn in the next 30 days, and how many can we realistically retain within our campaign budget?"
+"Which customers are most likely to churn in the next 30 days, and how many can we retain within our campaign capacity?"
 
 ### Project Goal
 
-Develop a churn prediction framework that:
+Design a churn prediction framework that:
 
-- Flags high-risk customers
-- Maximizes recall under fixed outreach capacity
-- Quantifies expected revenue impact
-- Provides interpretable drivers for action
+- Flags high-risk customers  
+- Maximizes recall under fixed outreach constraints  
+- Quantifies expected revenue impact  
+- Explains actionable churn drivers  
 
-The objective is financial impact, not cosmetic improvement in accuracy.
+The objective is measurable financial impact, not cosmetic gains in accuracy.
 
 ---
 
 ## 2. Dataset Overview
 
-Primary dataset: Telco Customer Churn  
+**Primary dataset:** Telco Customer Churn  
 
 - Total records: 7,043  
 - Churn rate: approximately 26.5%  
 
-File location:
+**File path**
 ```
 data/Telco-Customer-Churn.csv
 ```
