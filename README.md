@@ -232,7 +232,7 @@ Optional tooling stack:
 - Airflow  
 - Evidently  
 
-The architecture is designed for operational deployment, not notebook experimentation.
+The architecture is built for operational deployment rather than notebook-level experimentation.
 
 ---
 
