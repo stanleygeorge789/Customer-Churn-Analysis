@@ -106,7 +106,8 @@ Enhancements introduced:
 
 Final engineered feature set contains approximately 20 variables.
 
-All preprocessing steps are encapsulated inside sklearn pipelines to prevent leakage.
+All preprocessing steps are encapsulated within **scikit-learn pipelines** to prevent data leakage.
+
 
 ---
 
