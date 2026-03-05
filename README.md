@@ -13,9 +13,9 @@ This project is not built to maximize cosmetic metrics. It is optimized for cons
 
 ## 1. Business Context
 
-Churn is typically visible only after revenue erosion becomes measurable. By then, recovery is expensive.
+Churn is usually recognized only after revenue erosion becomes measurable. At that point, recovery becomes significantly more expensive.
 
-Retention is structurally cheaper than acquisition. Yet many organizations rely on untargeted retention campaigns due to weak predictive targeting.
+Retention is structurally cheaper than acquisition. However, many organizations still rely on broad, untargeted retention campaigns because predictive targeting capabilities are weak.
 
 **Executive Question**
 
